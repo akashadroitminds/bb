@@ -5,7 +5,6 @@ import axios from 'axios';
 import CharacterGrid from './components/characters/CharacterGrid';
 import Search from './components/ui/Search';
 import ReactPaginate from 'react-paginate';
-// Implementing react router
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import PostPage from './PostPage';
 
@@ -74,17 +73,6 @@ const App = () => {
       onPageChange={handlePageClick}
       containerClassName="pagination"
       activeClassName="active"
-        //   breakLabel="..."
-        //   nextLabel="next >"
-        //   onPageChange={handlePageClick}
-        //   pageRangeDisplayed={5}
-        //   pageCount={pageCount}
-        //   previousLabel="< previous"
-        //   renderOnZeroPageCount={null}
-        //   containerClassName="pagination"
-        //   activeClassName="active"
-        //   nextClassName="page-item"
-        // nextLinkClassName="page-link"
         />
     </>
    );
