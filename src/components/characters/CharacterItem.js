@@ -1,5 +1,6 @@
 import React from 'react';
-
+// import react router
+import { Link } from 'react-router-dom'
 const CharacterItem = ({ item }) => {
   return (
     <div className='card'>
@@ -29,6 +30,11 @@ const CharacterItem = ({ item }) => {
               <strong>Status:</strong> {item.status}
             </li>
           </ul>
+            <div className='learn-more-button-container'>
+            <Link to={`/${item.char_id}`}>
+              <p className='learn-more-button'>Learn More</p>
+            </Link>
+            </div>
         </div>
       </div>
     </div>

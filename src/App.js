@@ -5,6 +5,9 @@ import axios from 'axios';
 import CharacterGrid from './components/characters/CharacterGrid';
 import Search from './components/ui/Search';
 import ReactPaginate from 'react-paginate';
+// Implementing react router
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import PostPage from './PostPage';
 
 const App = () => {
   const [items, setItems] = useState([]);
@@ -89,11 +92,15 @@ const App = () => {
 
   return (
     <div className='container'>
+       <Router>
       <Header />
       <Search getQuery={(q) => setQuery(q)} />
-      <div class="pagination-container">
-      <PaginatedItems itemsPerPage={itemsPerPage} />
-      </div>
+      <Routes>
+        <Route path='/' element={<PaginatedItems itemsPerPage={itemsPerPage} />}/>
+      <Route path="/:id" element={<PostPage items={items} />} />
+      </Routes>
+    
+       </Router>
    
 
 
