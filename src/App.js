@@ -27,6 +27,18 @@ const App = () => {
     fetchItems();
   }, [query]);
 
+  useEffect(() => {
+    const fetchItems = async () => {
+      const result = await axios(
+        `https://www.breakingbadapi.com/api/characters?name=${query}`
+      );
+
+      setItems(result.data);
+      setIsLoading(false);
+    };
+    fetchItems();
+  }, [query]);
+
   function PaginatedItems({ itemsPerPage }) {
     // We start with an empty list of items.
     const [currentItems, setCurrentItems] = useState(null);
@@ -83,14 +95,13 @@ const App = () => {
        <Router>
       <Header />
       <Search getQuery={(q) => setQuery(q)} />
+      <CharacterGrid isLoading={isLoading} items={items} />
       <Routes>
         <Route path='/' element={<PaginatedItems itemsPerPage={itemsPerPage} />}/>
       <Route path="/:id" element={<PostPage items={items} />} />
       </Routes>
     
-       </Router>
-   
-
+       </Router>   
 
     </div>
   );

@@ -179,7 +179,6 @@ li.page-item.active a {
   .cards {
     grid-template-columns: 1fr;
   }
-
   .card img {
     width: 100%;
     height: 300px;
