@@ -11,9 +11,10 @@ import PostPage from './PostPage';
 const App = () => {
   const [items, setItems] = useState([]);
   const [paginatedItems, setPaginatedItems] = useState([]);
-  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
   const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState('');
+
   const fetchItems = async () => {
     const result = await axios(
       `https://www.breakingbadapi.com/api/characters?name=${query}`
@@ -40,14 +41,17 @@ const App = () => {
   }, [query]);
 
   function PaginatedItems({ itemsPerPage }) {
+    console.log('items currently shown',itemsPerPage)
     // We start with an empty list of items.
     const [currentItems, setCurrentItems] = useState(null);
-    const [pageCount, setPageCount] = useState(0);
+    
     // Here we use item offsets; we could also use page offsets
     // following the API or data you're working with.
     const [itemOffset, setItemOffset] = useState(0);
+    const [pageCount, setPageCount] = useState(0);
   
     useEffect(() => {
+      console.log('Text',itemOffset,itemsPerPage);
       // Fetch items from another resources.
       const endOffset = itemOffset + itemsPerPage;
       console.log(`Loading items from ${itemOffset} to ${endOffset}`);
@@ -94,10 +98,13 @@ const App = () => {
     <div className='container'>
        <Router>
       <Header />
+<<<<<<< HEAD
       <Search getQuery={(q) => setQuery(q)} />
       <CharacterGrid isLoading={isLoading} items={items} />
+=======
+>>>>>>> filtering-and-pagination
       <Routes>
-        <Route path='/' element={<PaginatedItems itemsPerPage={itemsPerPage} />}/>
+        <Route exact path='/' element={[<Search  itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} getQuery={(q) => setQuery(q)} />,<PaginatedItems itemsPerPage={itemsPerPage} />] }/>
       <Route path="/:id" element={<PostPage items={items} />} />
       </Routes>
     
