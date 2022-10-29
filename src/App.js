@@ -98,16 +98,10 @@ const App = () => {
     <div className='container'>
        <Router>
       <Header />
-<<<<<<< HEAD
-      <Search getQuery={(q) => setQuery(q)} />
-      <CharacterGrid isLoading={isLoading} items={items} />
-=======
->>>>>>> filtering-and-pagination
       <Routes>
         <Route exact path='/' element={[<Search  itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} getQuery={(q) => setQuery(q)} />,<PaginatedItems itemsPerPage={itemsPerPage} />] }/>
       <Route path="/:id" element={<PostPage items={items} />} />
       </Routes>
-    
        </Router>   
 
     </div>
